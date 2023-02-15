@@ -2,13 +2,14 @@ public class Main {
     public static void main(String[] args) {
 
         Company c = new Company();
+        c.setLock(false);
         Runnable produce_thread = () -> {
             int i = 1;
             while(true){
-                c.produce_item(i);
-                i++;
                 try{
-                    Thread.sleep(1000);
+                    c.produce_item(i);
+                    i++;
+                    Thread.sleep(2000);
                 } catch(Exception e){
 
                 }
@@ -17,11 +18,11 @@ public class Main {
 
         Runnable consume_thread = () -> {
             while(true){
-                c.consume_item();
                 try{
-                    Thread.sleep(1000);
+                    c.consume_item();
+                    Thread.sleep(000);
                 } catch(Exception e){
-                    
+
                 }
             }
         };
